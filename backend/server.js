@@ -6,7 +6,7 @@ const app = express();
 
 // Настройки
 app.use(cors({
-  origin: 'https://bridgex.ru/', // Можно указать конкретный домен, например: 'https://your-tilda-site.tilda.ws'
+  origin: 'https://bridgex.ru', // Можно указать конкретный домен, например: 'https://your-tilda-site.tilda.ws'
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
