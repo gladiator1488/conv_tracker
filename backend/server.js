@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Настройки
-app.use(cors());
+app.use(cors({
+  origin: 'https://bridgex.ru/', // Можно указать конкретный домен, например: 'https://your-tilda-site.tilda.ws'
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(bodyParser.json());
 
 // Подключение к PostgreSQL
