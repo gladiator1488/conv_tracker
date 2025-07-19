@@ -98,16 +98,17 @@ app.post('/api/collect', async (req, res) => {
     await client.query('BEGIN');
     for (const event of events) {
       await client.query(
-        `INSERT INTO events (session_id, website_id, event_type, timestamp, data)
-         VALUES ($1, $2, $3, $4, $5)`,
-        [
-          event.session_id,
-          event.website_id,
-          event.event_type,
-          new Date(event.timestamp || Date.now()),
-          event.data || {}
-        ]
-      );
+  `INSERT INTO events (client_id, website_id, event_type, timestamp, data)
+   VALUES ($1, $2, $3, $4, $5)`,
+  [
+    event.client_id,
+    event.website_id,
+    event.event_type,
+    new Date(event.timestamp || Date.now()),
+    event.data || {}
+  ]
+);
+
     }
     await client.query('COMMIT');
     client.release();
