@@ -27,7 +27,7 @@ const pool = new Pool({
 //     await pool.query(`
 //       CREATE TABLE IF NOT EXISTS events (
 //         id SERIAL PRIMARY KEY,
-//         session_id VARCHAR(36) NOT NULL,
+//         client_id VARCHAR(36) NOT NULL,
 //         website_id VARCHAR(50) NOT NULL,
 //         event_type VARCHAR(50) NOT NULL,
 //         timestamp TIMESTAMPTZ DEFAULT NOW(),
