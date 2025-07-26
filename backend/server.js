@@ -8,7 +8,7 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: ['https://stirka.com'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
@@ -44,11 +44,11 @@ app.post('/api/collect', async (req, res) => {
     await client.query('BEGIN');
     for (const event of events) {
       await client.query(
-        `INSERT INTO events (session_id, website_id, event_type, timestamp, data)
+        `INSERT INTO events (client_id, website_id, event_type, timestamp, data)
          VALUES ($1, $2, $3, $4, $5)`,
         [
-          event.session_id || event.client_id,
-          process.env.WEBSITE_ID || 'default_site',
+          event.client_id,
+          event.website_id || process.env.WEBSITE_ID || 'default_site',
           event.event_type,
           new Date(event.timestamp || Date.now()),
           event.data || {}
